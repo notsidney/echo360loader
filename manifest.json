@@ -1,0 +1,14 @@
+{
+    "name": "Echo360 Downloader",
+    "version": "0.1.0",
+    "description": "Chrome extension to download Echo360 videos",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": ["declarativeContent"],
+    "manifest_version": 2
+}
