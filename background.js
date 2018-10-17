@@ -10,6 +10,16 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
+    details => {
+        console.log(details);
+    }, {
+        urls: ['*://delivery.streaming.sydney.edu.au/*'],
+        types: ['main_frame'],
+    }, ['blocking', 'requestHeaders']
+);
+
+/*
+chrome.webRequest.onBeforeSendHeaders.addListener(
     info => {
         // Replace the User-Agent header
         let headers = info.requestHeaders;
@@ -30,3 +40,4 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     },
     ['blocking', 'requestHeaders']
 );
+*/

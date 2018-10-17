@@ -3,17 +3,19 @@
     "version": "0.1.0",
     "description": "Chrome extension to download Echo360 videos",
     "background": {
-        "scripts": ["background.js"],
-        "persistent": true
+        "scripts": ["hls.js", "background.js"],
+        "persistent": false
     },
     "content_scripts": [{
-        "matches": ["*://delivery.streaming.sydney.edu.au/*"],
+        "matches": ["*://*.streaming.sydney.edu.au/*"],
         "js": ["hls.js", "contentScript.js"],
         "run_at": "document_idle"
     }],
     "page_action": {
         "default_popup": "popup.html"
     },
-    "permissions": ["declarativeContent", "webRequest", "webRequestBlocking", "*://view.streaming.sydney.edu.au/*", "*://delivery.streaming.sydney.edu.au/*"],
+    "permissions": [
+        "declarativeContent",
+    ],
     "manifest_version": 2
 }
