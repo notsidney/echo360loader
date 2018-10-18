@@ -10,12 +10,16 @@
         "matches": ["*://*.streaming.sydney.edu.au/*"],
         "js": ["hls.js", "contentScript.js"],
         "run_at": "document_idle"
+    }, {
+        "matches": ["http://delivery.streaming.sydney.edu.au/*"],
+        "js": ["fixes.js"],
+        "run_at": "document_end"
     }],
     "page_action": {
         "default_popup": "popup.html"
     },
     "permissions": [
-        "declarativeContent",
+        "declarativeContent"
     ],
     "manifest_version": 2
 }

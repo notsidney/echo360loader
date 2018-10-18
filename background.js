@@ -9,14 +9,19 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
-    details => {
-        console.log(details);
-    }, {
-        urls: ['*://delivery.streaming.sydney.edu.au/*'],
-        types: ['main_frame'],
-    }, ['blocking', 'requestHeaders']
-);
+// chrome.webNavigation.onCommitted.addListener(
+//     details => {
+//         if (details.url.indexOf('ios_error.htm')) {
+//             console.log(details);
+//             chrome.tabs.executeScript(details.tabId, {
+//                 runAt: 'document_start',
+//                 code: 'window.stop();',
+//             });
+//         }
+//     }, {
+//         url: [{ hostEquals: 'delivery.streaming.sydney.edu.au' }],
+//     },
+// );
 
 /*
 chrome.webRequest.onBeforeSendHeaders.addListener(
