@@ -44,4 +44,27 @@ function playHLS() {
             video.play();
         });
     }
+
+    const sliderContainer = document.createElement('div');
+    sliderContainer.setAttribute('style', 'color: #fff; font-family: sans-serif');
+    sliderContainer.innerHTML = `
+        <label for="slider">Playback speed:</label>
+        <span id="slider-value" style="font-weight: bold">1.00</span>
+        <input id="slider" type="range" step="any" min="0.25" max="3" value="1"
+        list="tickmarks" style="width: 300px; margin: 10px 10px 30px; vertical-align: sub">
+        <datalist id="tickmarks">
+            <option value="1">
+            <option value="1.25">
+            <option value="1.5">
+            <option value="1.75">
+            <option value="2">
+            <option value="3">
+        </datalist>
+    `;
+    container.appendChild(sliderContainer);
+
+    document.getElementById('slider').onchange = e => {
+        document.getElementById('slider-value').innerHTML = parseFloat(e.target.value).toFixed(2);
+        video.playbackRate = e.target.value;
+    }
 }
