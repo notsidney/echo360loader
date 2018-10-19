@@ -1,11 +1,20 @@
 const styleElement = document.createElement('style');
 const styles = document.createTextNode(`
-    #content-thumbs {
+    #content #content-thumbs {
         float: right !important;
         overflow-y: scroll !important;
+        height: 400px !important;
     }
     #content #content-thumbs #thumb-container {
         display: block;
+    }
+    #content #content-thumbs ul li img {
+        cursor: pointer;
+        opacity: .5;
+        transition: opacity .2s;
+    }
+    #content #content-thumbs ul li img:hover {
+        opacity: 1;
     }
 `);
 styleElement.appendChild(styles);
@@ -25,24 +34,20 @@ presentationxhr.onload = function() {
 
     setHtml("name", myName);
     setHtml("date", myTimestamp);
+
+    const myPresenter = getPresenterValue("name");
+    setHtml("author", myPresenter);
+
+    findThumbnails();
+    loadThumbs();
 }
 presentationxhr.open("GET", document.getElementById('presentationInfo').getAttribute('src').replace('https', 'http'));
 presentationxhr.responseType = "document";
 presentationxhr.send();
 
-const sectionxhr = new XMLHttpRequest();
-sectionxhr.onload = function() {
-    sectionxml = this.responseXML;
-    console.log(sectionxml);
-
-    loadSectionObject();
-
-    const myPresenter = getPresenterValue("name");
-    setHtml("author", myPresenter);
+function seekVideo(time) {
+    video.currentTime = Math.round(time / 1000);
 }
-sectionxhr.open("GET", document.getElementById('presentationInfo').getAttribute('src').replace('https', 'http'));
-sectionxhr.responseType = "document";
-sectionxhr.send();
 `);
 newScript.appendChild(scriptText);
 document.body.appendChild(newScript);
