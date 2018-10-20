@@ -1,7 +1,7 @@
 {
-    "name": "Echo360 Downloader",
-    "version": "0.1.0",
-    "description": "Chrome extension to download Echo360 videos",
+    "name": "Echo360 Loader",
+    "version": "1.0.0",
+    "description": "Chrome extension to load USYD Echo360 videos without Flash",
     "background": {
         "scripts": ["hls.js", "background.js"],
         "persistent": false
@@ -16,10 +16,20 @@
         "run_at": "document_end"
     }],
     "page_action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon/icon16.png",
+            "24": "icon/icon24.png",
+            "32": "icon/icon32.png"
+        }
     },
     "permissions": [
         "declarativeContent"
     ],
+    "icons": {
+        "16": "icon/icon16.png",
+        "48": "icon/icon48.png",
+        "128": "icon/icon128.png"
+    },
     "manifest_version": 2
 }

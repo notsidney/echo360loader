@@ -97,7 +97,7 @@ function playHLS() {
         <label for="playlist-link">Playlist link:</label>
         <input id="playlist-link" type="text" value="${src}" readonly
         onClick="this.select()" />
-        <a href="https://github.com/notseenee/echo360loader/downloadinstructions.md"
+        <a href="https://github.com/notseenee/echo360loader/blob/master/downloadinstructions.md"
         target="_blank" rel="noopener noreferrer">
             Download instructions
         </a>
