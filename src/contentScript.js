@@ -1,35 +1,40 @@
-if (window.location.hostname === 'view.streaming.sydney.edu.au') {
-    const iframe = document.getElementsByTagName('iframe')[0];
-    let url = iframe.getAttribute('src')
-        .replace('echo.htm', 'echo_files/echo_ipad.htm')
-        .replace('https', 'http');
-    location.href = url;
-} else if (window.location.hostname === 'delivery.streaming.sydney.edu.au') {
-    const stopRedirectScript = document.createElement('script');
-    stopRedirectScript.appendChild(document.createTextNode('mySource = "audio-vga-streamable.m4v";'));
-    document.head.appendChild(stopRedirectScript);
+let src, container, video;
 
-    const observer = new MutationObserver(() => {
-        if (document.getElementById('video1')) {
-            playHLS();
-            observer.disconnect();
-        }
-    });
-    observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true
-    });
-}
+/**
+ * Prevent the page redirecting to error_ios.htm
+ */
+const stopRedirectScript = document.createElement('script');
+stopRedirectScript.appendChild(document.createTextNode('mySource = "audio-vga-streamable.m4v";'));
+document.head.appendChild(stopRedirectScript);
 
+/**
+ * Waits for the video tag to be loaded by the iPad player page
+ */
+const observer = new MutationObserver(() => {
+    if (document.getElementById('video1')) {
+        observer.disconnect();
+        playHLS();
+        addCustomControls();
+        fixMetadata();
+    }
+});
+observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+});
+
+/**
+ * Plays the HLS stream
+ */
 function playHLS() {
-    const container = document.getElementById('content');
+    container = document.getElementById('content');
     const oldVideo = document.getElementById('video1');
-    const src = oldVideo.getAttribute('src');
+    src = oldVideo.getAttribute('src');
     const poster = new URLSearchParams(window.location.search).get('contentDir') + 'flipbook/00000000.jpg';
 
     container.removeChild(document.getElementById('content-player'));
 
-    const video = document.createElement('video');
+    video = document.createElement('video');
     video.setAttribute('id', 'video');
     video.setAttribute('style', 'width: 720px; height: 400px;');
     video.setAttribute('controls', 'true');
@@ -42,12 +47,14 @@ function playHLS() {
         hls.loadSource(src);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.play().catch(err => { console.log(err) });
-            hls.on(Hls.Events.LEVEL_LOADED, (event, data) => {
-                console.log(data.details.fragments);
-            });
         });
     }
+}
 
+/**
+ * Adds the custom controls below the video player
+ */
+function addCustomControls() {
     const controlStyles = document.createElement('style');
     controlStyles.appendChild(document.createTextNode(`
         label {
@@ -107,5 +114,64 @@ function playHLS() {
     document.getElementById('slider').oninput = e => {
         document.getElementById('slider-value').innerHTML = parseFloat(e.target.value).toFixed(2);
         video.playbackRate = e.target.value;
+    };
+}
+
+/**
+ * Re-adds the metadata on top of the page and enables thumbnail seeking
+ */
+function fixMetadata() {
+    const styleElement = document.createElement('style');
+    const styles = document.createTextNode(`
+        #content #content-thumbs {
+            float: right !important;
+            overflow-y: scroll !important;
+            height: 400px !important;
+        }
+        #content #content-thumbs #thumb-container {
+            display: block;
+        }
+        #content #content-thumbs ul li img {
+            cursor: pointer;
+            opacity: .5;
+            transition: opacity .2s;
+        }
+        #content #content-thumbs ul li img:hover {
+            opacity: 1;
+        }
+    `);
+    styleElement.appendChild(styles);
+    document.head.appendChild(styleElement);
+
+    const newScript = document.createElement('script');
+    const scriptText = document.createTextNode(`
+    const presentationxhr = new XMLHttpRequest();
+    presentationxhr.onload = function() {
+        presentationxml = this.responseXML;
+        loadSessionObject();
+
+        const myName = getPresentationValue("name");
+        const myTimestamp = getPresentationValue("start-timestamp");
+
+        document.title = "EchoPlayer: " + myName;
+
+        setHtml("name", myName);
+        setHtml("date", myTimestamp);
+
+        const myPresenter = getPresenterValue("name");
+        setHtml("author", myPresenter);
+
+        findThumbnails();
+        loadThumbs();
     }
+    presentationxhr.open("GET", document.getElementById('presentationInfo').getAttribute('src').replace('https', 'http'));
+    presentationxhr.responseType = "document";
+    presentationxhr.send();
+
+    function seekVideo(time) {
+        video.currentTime = Math.round(time / 1000);
+    }
+    `);
+    newScript.appendChild(scriptText);
+    document.body.appendChild(newScript);
 }

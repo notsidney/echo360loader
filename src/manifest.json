@@ -1,0 +1,41 @@
+{
+    "name": "USYD Echo360 Loader",
+    "version": "1.1.0",
+
+    "description": "Chrome extension to load USYD Echo360 videos without Flash",
+    "author": "Sidney Alcantara",
+
+    "icons": {
+        "16": "icon/icon16.png",
+        "48": "icon/icon48.png",
+        "128": "icon/icon128.png"
+    },
+
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon/icon16.png",
+            "24": "icon/icon24.png",
+            "32": "icon/icon32.png"
+        }
+    },
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [{
+        "matches": ["*://view.streaming.sydney.edu.au/*"],
+        "js": ["redirect.js"],
+        "run_at": "document_idle"
+    }, {
+        "matches": ["http://delivery.streaming.sydney.edu.au/*"],
+        "js": ["hls.js", "contentScript.js"],
+        "run_at": "document_idle"
+    }],
+    "permissions": [
+        "declarativeContent"
+    ],
+
+    "manifest_version": 2
+}
