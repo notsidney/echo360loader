@@ -130,9 +130,8 @@ function addCustomControls() {
 function fixMetadata() {
     const styleElement = document.createElement('style');
     const styles = document.createTextNode(`
-        #top #content-text *,
-        #top #content-text #name {
-            font-family: "Helvetica Neue", Arial, sans-serif;
+        #top #content-text * {
+            font-family: "Helvetica Neue", Arial, sans-serif !important;
         }
         #content #content-thumbs {
             float: right !important;

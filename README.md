@@ -58,6 +58,7 @@ host names:
 ## Version history
 | Version | Changes                                                            |
 | -------:|:------------------------------------------------------------------ |
+|   1.2.1 | More UI fixes for Windows                                          |
 |   1.2.0 | UI fixes for Windows, show popup when ios_error.htm is shown       |
 |   1.1.0 | Clean up code and add README.md                                    |
 |   1.0.0 | Initial release to the Chrome Web Store                            |
