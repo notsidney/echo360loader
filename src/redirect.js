@@ -1,5 +1,5 @@
-const iframe = document.getElementsByTagName('iframe')[0];
-let url = iframe.getAttribute('src')
+const url = document.getElementsByTagName('iframe')[0]
+    .getAttribute('src')
     .replace('echo.htm', 'echo_files/echo_ipad.htm')
-    .replace('https', 'http');
+    .replace(/https/g, 'http');
 location.href = url;

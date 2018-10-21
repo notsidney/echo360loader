@@ -58,6 +58,8 @@ host names:
 ## Version history
 | Version | Changes                                                            |
 | -------:|:------------------------------------------------------------------ |
+|   1.3.1 | Remove old unnecessary XHR request in `contentScripts.js`          `
+|   1.3.0 | Fix Windows Chrome always going to ios_error.htm                   |
 |   1.2.1 | More UI fixes for Windows                                          |
 |   1.2.0 | UI fixes for Windows, show popup when ios_error.htm is shown       |
 |   1.1.0 | Clean up code and add README.md                                    |
