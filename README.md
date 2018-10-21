@@ -36,6 +36,7 @@ the Chrome video player.
 - `hls.js` is the bundled hls.js
 - `contentScript.js` plays the HLS stream, adds custom controls below the video,
   re-adds the metadata on the top of the page, and fixes thumbnail seeking
+- `popup.js` displays the extension’s version number in the popup
 
 ### HTTPS issues
 This extension uses the non-HTTPS version of the iPad player since the HLS
@@ -57,6 +58,7 @@ host names:
 ## Version history
 | Version | Changes                                                            |
 | -------:|:------------------------------------------------------------------ |
+|   1.2.0 | UI fixes for Windows, show popup when ios_error.htm is shown       |
 |   1.1.0 | Clean up code and add README.md                                    |
 |   1.0.0 | Initial release to the Chrome Web Store                            |
 

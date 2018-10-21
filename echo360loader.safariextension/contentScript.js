@@ -1,10 +1,17 @@
 if (window.location.hostname === 'delivery.streaming.sydney.edu.au' && window.top === window) {
     /**
-     * Prevent the page redirecting to error_ios.htm
+     * Prevent the page redirecting to ios_error.htm
      */
     const stopRedirectScript = document.createElement('script');
     stopRedirectScript.appendChild(document.createTextNode('mySource = "audio-vga-streamable.m4v";'));
     document.head.appendChild(stopRedirectScript);
+
+    /**
+     * Handle ios_error.htm
+     */
+    if (window.location.href.indexOf('ios_error.htm') > 0) {
+        alert('Oops! Please try closing this tab and playing the video again.');
+    }
 
     /**
      * Waits for the video tag to be loaded by the iPad player page
