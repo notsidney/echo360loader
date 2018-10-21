@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Sidney Alcantara</string>
+	<key>Builder Version</key>
+	<string>14606.1.36.1.9</string>
+	<key>CFBundleDisplayName</key>
+	<string>Echo360 Loader</string>
+	<key>CFBundleIdentifier</key>
+	<string>me.sidney.echo360loader</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>redirect.js</string>
+				<string>contentScript.js</string>
+			</array>
+		</dict>
+		<key>Whitelist</key>
+		<array>
+			<string>https://view.streaming.sydney.edu.au/*</string>
+			<string>https://delivery.streaming.sydney.edu.au/*</string>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>Safari extension that loads Echo360 videos without Flash</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>view.streaming.sydney.edu.au</string>
+				<string>delivery.streaming.sydney.edu.au</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>Some</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>https://github.com/notseenee/echo360loader</string>
+</dict>
+</plist>
