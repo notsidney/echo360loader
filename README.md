@@ -1,18 +1,26 @@
 # Echo360 Loader
+**A Chrome extension to load USYD Echo360 videos without Flash.**  
+Includes playback speed controls and thumbnail seeking.
+
 <a href="https://chrome.google.com/webstore/detail/hekcgkbebmbmbclcgikaocemhaeafpbf/" target="_blank" rel="noopener noreferrer">
     <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_496x150.png" width="248" alt="Link to Chrome Web Store page" />
 </a>
 
-Get it on the [Chrome Web Store](https://chrome.google.com/webstore/detail/hekcgkbebmbmbclcgikaocemhaeafpbf/)
-or as a .crx file on the
-[releases tab](https://github.com/notseenee/echo360loader/releases) above.
-
-A Chrome extension to load USYD Echo360 videos without Flash.
-Includes playback speed controls and thumbnail seeking.
+Get it on the [**Chrome Web Store →**](https://chrome.google.com/webstore/detail/hekcgkbebmbmbclcgikaocemhaeafpbf/)
+or as a
+[.crx](https://github.com/notseenee/echo360loader/releases)
 
 ![Screenshot](images/screenshot@2x.png)
 
-[Instructions to download the video using ffmpeg](downloadinstructions.md)
+[**Instructions to download the video using ffmpeg →**](downloadinstructions.md)
+
+## Safari extension
+<img src="https://developer.apple.com/assets/elements/icons/safari/safari-128x128_2x.png" width="64" height="64" alt="Safari icon" align="right">
+This is a port of the Chrome extension with a few changes made. I will not be
+releasing this on the Safari Extension Gallery or Mac App Store due to Apple’s
+99 USD/year developer fee.
+
+[**Installation instructions →**](echo360loader.safariextension)
 
 ## Under the hood
 This extension redirects the browser from the default (horrible) Flash player to
@@ -46,13 +54,14 @@ host names:
 - [`background.js`](src/background.js) line 5
 
 ## Version history
-### 1.1.0
-Clean up code and add README.md
+| Version | Changes                                                            |
+| -------:|:------------------------------------------------------------------ |
+|   1.1.0 | Clean up code and add README.md                                    |
+|   1.0.0 | Initial release to the Chrome Web Store                            |
 
-### 1.0.0
-Initial release to the Chrome Web Store
-
---------------------------------------------------------------------------------
+## Copyright and licensing
+This extension and its source code is released under the [MIT Licence](LICENSE).
 
 This extension bundles [hls.js](https://github.com/video-dev/hls.js/), which is
-licensed under Apache Licence 2.0.
+licensed under Apache Licence 2.0. Its copyright notice is preserved
+[here](LICENSE).
