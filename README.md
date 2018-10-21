@@ -16,9 +16,9 @@ or as a
 
 ## Safari extension
 <img src="https://developer.apple.com/assets/elements/icons/safari/safari-128x128_2x.png" width="64" height="64" alt="Safari icon" align="right">
-This is a port of the Chrome extension with a few changes made. I will not be
-releasing this on the Safari Extension Gallery or Mac App Store due to Apple’s
-99 USD/year developer fee.
+This is a port of the Chrome extension with a few changes made.  
+I will not be releasing this on the Safari Extension Gallery or Mac App Store
+due to Apple’s 99 USD/year developer fee.
 
 [**Installation instructions →**](echo360loader.safariextension)
 
