@@ -33,9 +33,19 @@ the Chrome video player.
 - `redirect.js` redirects `view.streaming.sydney.edu.au` pages to the iPad
   player at
   `http://delivery.streaming.edu.au/echo/templates/.../echo_files/echo_ipad.htm`
+- `preventRedirect.js` overwrites over the whole page to prevent the iPad player
+  from redirecting to the error page
+- `echo360.js` is the JavaScript code loaded by the iPad player, copied here and
+  bundled with the extension to comply with the Chrome Web Store’s policy on
+  code obfuscation. This is necessary as `preventRedirect.js` removes the
+  original code. This code has also been patched to prevent redirecting to the
+  error page.
 - `hls.js` is the bundled hls.js
 - `contentScript.js` plays the HLS stream, adds custom controls below the video,
   re-adds the metadata on the top of the page, and fixes thumbnail seeking
+- `style.css` is copied from the Echo360 player (again due to
+  `preventRedirect.js`) and has been modified with UI changes to make the player
+  bigger
 - `popup.js` displays the extension’s version number in the popup
 
 ### HTTPS issues
@@ -58,6 +68,8 @@ host names:
 ## Version history
 | Version | Changes                                                            |
 | -------:|:------------------------------------------------------------------ |
+|   1.3.3 | Copied Echo360 code to comply with Chrome Web Store policy         |
+|   1.3.2 | Bundle unminified hls.js to comply with Chrome Web Store policy    |
 |   1.3.1 | Remove old unnecessary XHR request in `contentScripts.js`          |
 |   1.3.0 | UI changes, fix Windows Chrome always going to ios_error.htm       |
 |   1.2.1 | More UI fixes for Windows                                          |
